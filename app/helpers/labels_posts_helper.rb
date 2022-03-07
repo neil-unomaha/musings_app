@@ -1,0 +1,2 @@
+module LabelsPostsHelper
+end

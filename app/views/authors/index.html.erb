@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>
+  Authors
+  <%= link_to '+ New Author', new_author_path, class: "btn btn-sm btn-success"%>
+</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @authors.each do |author| %>
+      <tr>
+        <td>
+          <%= author.name %>
+          <% if author.posts.any? %>
+             <button class="badge badge-pill badge-info" data-toggle="collapse" data-target="#<%="author_posts_#{author.id}"%>"><%= author.posts.size %></button>
+          <% end %>
+        </td>
+        <td><%= link_to 'Show', author, class: "btn btn-sm btn-info" %></td>
+        <td><%= link_to 'Edit', edit_author_path(author), class: "btn btn-sm btn-info" %></td>
+        <td><%= link_to 'Destroy', author, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %></td>
+      </tr>
+
+      <tr>
+        <% if author.posts.any? %>
+          <td colspan="4" id="author_posts_<%=author.id%>" class="collapse">
+              <% author.posts.ordered.each do |post| %>
+                <%= render partial: "posts/post", locals: {post: post}%>
+                <br>
+              <% end %>
+          </td>
+        <% end %>
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+<br>

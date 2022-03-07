@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-header">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3><%= post.title %></h3>
+        </div>
+      </div>
+  </div>
+  <div class="card-body">
+    <%= post.summary %>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-sm-4">
+        <strong>Author:</strong>
+        <%= post.author.try(:name) %>
+      </div>
+      <div class="col-sm-4">
+        <strong>Medium:</strong>
+        <%= post.medium_type.try(:name) %>
+      </div>
+      <div class="col-sm-4">
+        <% if post.reference.present? %>
+          <%= link_to "Reference", post.reference %>
+        <% end %>
+      </div>
+      <div class="col-sm-12">
+        <strong>Labels:</strong>
+        <% post.labels.each do |label| %>
+           <span class="badge badge-primary"><%=label.name%></span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

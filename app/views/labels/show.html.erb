@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @label.name %>
+</p>
+
+<%= link_to 'Edit', edit_label_path(@label) %> |
+<%= link_to 'Back', labels_path %>
+
+<br>
+<hr>
+
+<% @label.posts.ordered.each do |post| %>
+  <%= render partial: "posts/post", locals: {post: post}%>
+  <br>
+<% end %>
+
+<br><br>

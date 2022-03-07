@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @medium_type.name %>
+</p>
+
+<%= link_to 'Edit', edit_medium_type_path(@medium_type) %> |
+<%= link_to 'Back', medium_types_path %>
+
+<br>
+<hr>
+
+<% @medium_type.posts.ordered.each do |post| %>
+  <%= render partial: "posts/post", locals: {post: post}%>
+  <br>
+<% end %>
+
+<br><br>

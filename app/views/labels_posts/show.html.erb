@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Label:</strong>
+  <%= @labels_post.label_id %>
+</p>
+
+<p>
+  <strong>Post:</strong>
+  <%= @labels_post.post_id %>
+</p>
+
+<%= link_to 'Edit', edit_labels_post_path(@labels_post) %> |
+<%= link_to 'Back', labels_posts_path %>

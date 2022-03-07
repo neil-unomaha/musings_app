@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Labels Posts</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Post</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @labels_posts.each do |labels_post| %>
+      <tr>
+        <td><%= labels_post.label_id %></td>
+        <td><%= labels_post.post_id %></td>
+        <td><%= link_to 'Show', labels_post %></td>
+        <td><%= link_to 'Edit', edit_labels_post_path(labels_post) %></td>
+        <td><%= link_to 'Destroy', labels_post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Labels Post', new_labels_post_path %>

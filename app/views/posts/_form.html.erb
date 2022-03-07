@@ -1,0 +1,77 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <%= form.label :author_id do %>
+      Author <%= link_to "+ Author", new_author_path, class: "btn btn-xs btn-success" %>
+      <% end %>
+      <%= form.collection_select :author_id, Author.all.ordered, :id, :name, {include_blank: "Please Select"}, class: "form-control" %>
+    </div>
+
+    <div class="col-sm-6">
+      <%= form.label :medium_type_id do %>
+      Medium <%= link_to "+ Medium", new_medium_type_path, class: "btn btn-xs btn-success" %>
+      <% end %>
+      <%= form.collection_select :medium_type_id, MediumType.all.ordered, :id, :name, {include_blank: "Please Select"}, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :labels_raw do %>
+      Labels
+      <button type="button" class="btn btn-xs btn-info" data-toggle="tooltip" data-placement="right" title="Add a semi-colon between labels. Typing in a label that does not yet exist will create the label.">
+        ?
+      </button>
+    <% end %>
+    <%= form.text_field :labels_raw, class: "form-control", id: "post_labels_raw" %>
+  </div>
+
+  <br>
+
+  <div class="card bg-light text-dark">
+    <div class="card-body">
+      <p class="text-info">Click to Easily Add Labels to this Post.<p>
+        <% Label.all.ordered.each do |label| %>
+          <button type="button" class="btn btn-sm btn-info post-label-easy-add-btn"><%=label.name%></button>
+        <% end %>
+    </div>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :reference %>
+    <%= form.text_field :reference, class: "form-control"%>
+  </div>
+
+  <br>
+  <hr>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control"%>
+  </div>
+
+  <div class="field">
+  <%= form.label :summary %>
+  <%= form.rich_text_area :summary %>
+  </div>
+
+  <br>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<br><br><br><br>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Musings App</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body class="appBody <%=controller_name%> <%=action_name%>">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="<%= root_path %>">Musings App</a>
+
+       <!-- Links -->
+       <ul class="navbar-nav">
+         <!-- Dropdown -->
+         <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+             Posts
+           </a>
+           <div class="dropdown-menu">
+             <%= link_to "All Posts", posts_path, class: "nav-link"%>
+             <%= link_to "Sort - Authors", authors_path, class: "nav-link"%>
+             <%= link_to "Sort - Mediums", medium_types_path, class: "nav-link"%>
+             <%= link_to "Sort - Labels", labels_path, class: "nav-link"%>
+           </div>
+         </li>
+       </ul>
+    </nav>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>
